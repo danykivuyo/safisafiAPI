@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description');
             $table->string('audio_url');
+            $table->string('image_url');
             $table->timestamps();
         });
     }
