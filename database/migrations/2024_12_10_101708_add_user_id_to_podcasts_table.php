@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('podcasts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id'); // Adjust 'id' to place the column appropriately
+            // $table->unsignedBigInteger('user_id')->after('id'); // Adjust 'id' to place the column appropriately
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Foreign key constraint
         });
     }
