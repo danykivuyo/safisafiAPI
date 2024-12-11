@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\WalletController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\PodcastController;
+use App\Http\Controllers\Api\PodcastController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('users', UserController::class);
+Route::post('/login', [UserController::class, 'login']);
 Route::get('/podcasts', [PodcastController::class, 'index']);
 Route::post('/podcasts', [PodcastController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/balance', [WalletController::class, 'balance'])->name('user.balance');
+Route::get('/actual_balance', [WalletController::class, 'balance'])->name('user.actual_balance')->middleware('auth:api');

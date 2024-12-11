@@ -15,5 +15,12 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json(['success' => true, "message" => "Api Available"], 200);
 });
+
+Route::get('/login', function () {
+    return response()->json([
+        'success' => false,
+        'message' => "You need to login first"
+    ], 401);
+})->name('require.login');
