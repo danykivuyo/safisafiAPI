@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('users', UserController::class);
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/podcasts', [PodcastController::class, 'index']);
-Route::post('/podcasts', [PodcastController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/podcasts', [PodcastController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/balance', [WalletController::class, 'balance'])->name('user.balance');
-Route::get('/actual_balance', [WalletController::class, 'balance'])->name('user.actual_balance')->middleware('auth:api');
+Route::middleware('auth:sanctum')->get('/actual_balance', [WalletController::class, 'balance'])->name('user.actual_balance')->middleware('auth:api');
+Route::middleware('auth:sanctum')->post('/deduct-coin', [WalletController::class, 'deduct_coin'])->name('deduct.coin');
+Route::middleware('auth:sanctum')->post('/recharge-coin', [WalletController::class, 'recharge_coin']);
