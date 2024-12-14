@@ -14,6 +14,22 @@ class PodcastController extends Controller
         return response()->json(Podcast::all(), 200);
     }
 
+    public function fillter_popular(Request $request)
+    {
+        try {
+            $request->validate([
+                'user_id' => 'required|string|exists:users,user_id',
+            ]);
+            $user_id = $request->input();
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->errors()
+            ], 422);
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([

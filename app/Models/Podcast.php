@@ -8,10 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class Podcast extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'description',
+        'audio_url',
+        'image_url',
+        'genre1',
+        'genre2',
+        'likes',
+        'plays',
+        'shares',
+        'views',
+    ];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function recentPlays()
+    {
+        return $this->hasMany(RecentPlay::class);
     }
 
 }
