@@ -15,6 +15,7 @@ class WalletController extends Controller
     //specific user number of coin
     public function balance(Request $request)
     {
+        $user_id = $request->input('user_id');
         return response()->json([
             'user_id' => $user_id
         ], 200);
