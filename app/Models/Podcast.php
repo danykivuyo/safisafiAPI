@@ -32,4 +32,10 @@ class Podcast extends Model
         return $this->hasMany(RecentPlay::class);
     }
 
+    public function preferences()
+    {
+        return $this->belongsToMany(Preference::class)
+            ->withTimestamps(); // If you use timestamps in pivot table
+    }
+
 }

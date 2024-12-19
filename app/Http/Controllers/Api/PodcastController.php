@@ -41,4 +41,46 @@ class PodcastController extends Controller
         $podcast = Podcast::create($request->all());
         return response()->json($podcast, 201);
     }
+
+    public function attach_podcast_preference(Request $request)
+    {
+        $request->validate([
+            'podcast_id' => 'required',
+            'preference_id' => 'required'
+        ]);
+        $podcast = Podcast::find($request->podcast_id);
+        if ($podcast->preferences()->attach($request->preference_id)) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Attached Successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to Attach'
+            ], 200);
+        }
+    }
+
+    public function detach_podcast_preference(Request $request)
+    {
+        $request->validate([
+            'podcast_id' => 'required',
+            'preference_id' => 'required'
+        ]);
+
+        $podcast = Podcast::find($request->podcast_id);
+        if ($podcast->preferences()->detach($request->preference_id)) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Dettached Successfully'
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to Dettach'
+            ], 200);
+        }
+
+    }
 }
