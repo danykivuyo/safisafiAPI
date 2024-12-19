@@ -15,6 +15,10 @@ class WalletController extends Controller
     //specific user number of coin
     public function balance(Request $request)
     {
+        return response()->json([
+            'user_id' => $user_id
+        ], 200);
+
         try {
             $request->validate([
                 'user_id' => 'required|string|exists:users,user_id',
@@ -154,7 +158,7 @@ class WalletController extends Controller
 
                 //actual amount
                 $user->wallet->actual_balance += $recharge_amount;
-                
+
                 if ($user->wallet->save()) {
                     DB::commit();
                     return response()->json([
