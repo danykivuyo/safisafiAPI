@@ -16,7 +16,6 @@ class WalletController extends Controller
     public function balance(Request $request)
     {
         $user_id = $request->input('user_id');
-        dd($request->all());
         return response()->json([
             'user_id' => $user_id
         ], 200);
