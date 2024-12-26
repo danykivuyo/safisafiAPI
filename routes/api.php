@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\WalletController;
+use App\Http\Controllers\Api\PlaylistController;
 use App\Http\Controllers\PreferenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,7 @@ Route::middleware('auth:sanctum')->post('/actual_balance', [WalletController::cl
 Route::middleware('auth:sanctum')->post('/deduct-coin', [WalletController::class, 'deduct_coin'])->name('deduct.coin');
 Route::middleware('auth:sanctum')->post('/recharge-coin', [WalletController::class, 'recharge_coin']);
 Route::get('/preferences', [PreferenceController::class, 'index']);
+
+Route::middleware('auth:sanctum')->post('/add-to-playlist', [PlaylistController::class, 'add_to_playlist']);
+Route::middleware('auth:sanctum')->post('/get-playlists', [PlaylistController::class, 'get_playlists']);
+Route::middleware('auth:sanctum')->post('/get-podcasts-by-playlist', [PlaylistController::class, 'get_podcasts_by_playlist']);

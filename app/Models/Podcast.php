@@ -37,5 +37,8 @@ class Podcast extends Model
         return $this->belongsToMany(Preference::class)
             ->withTimestamps(); // If you use timestamps in pivot table
     }
-
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class, 'playlist_podcasts');
+    }
 }
