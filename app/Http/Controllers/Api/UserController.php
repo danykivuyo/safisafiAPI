@@ -160,12 +160,14 @@ class UserController extends Controller
                 'success' => true,
                 'message' => "User created successfully",
                 'data' => [
+                    'status' => 1,
                     'user' => $user
                 ]
             ];
             return $res;
         } catch (QueryException $e) {
             if ($e->errorInfo[1] == 1062) {
+                dd('hre');
                 $user = User::where('email', $email)->first();
                 $res = [
                     'success' => true,
