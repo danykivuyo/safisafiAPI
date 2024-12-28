@@ -73,19 +73,30 @@ class PlaylistController extends Controller
         try {
             $request->validate([
                 'user_id' => 'required|exists:users,user_id',
-                'playlist_name' => 'required|exists:playlist,name'
+                'playlist_name' => 'required'
             ]);
 
             $this->user = User::where('user_id', $request->user_id)->first();
-            $podcasts = $this->user->playlists()->where('name', $request->playlist_name)->get();
+            $playlist = $this->user->playlists()->where('name', $request->playlist_name)->first();
 
+            if (!$playlist) {
+                // throw new \Exception('Playlist not found');
+                return response()->json([
+                    'success' => false,
+                    'message' => "Playlist not found"
+                ], 404);
+            }
+            $podcasts = $playlist->podcasts()->get();
             return response()->json([
                 'success' => true,
                 'message' => "Fetched successfully",
                 'data' => $podcasts
-            ]);
+            ], 200);
         } catch (\Exception $e) {
-
+            return response()->json([
+                'success' => false,
+                'message' => "Failed to load content, $e",
+            ], 400);
         }
     }
 }

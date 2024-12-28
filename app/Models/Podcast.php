@@ -41,4 +41,9 @@ class Podcast extends Model
     {
         return $this->belongsToMany(Playlist::class, 'playlist_podcasts');
     }
+
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
 }
