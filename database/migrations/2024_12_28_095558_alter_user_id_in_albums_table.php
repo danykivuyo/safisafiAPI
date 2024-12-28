@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::table('albums', function (Blueprint $table) {
             //
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade')->change();
+            $table->foreignId('user_id')->nullable()->change();
         });
     }
 
