@@ -74,8 +74,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required',
             'mobile_number' => 'required',
             'country' => 'required',
             'region' => 'required'
@@ -84,8 +83,7 @@ class UserController extends Controller
         $res = $this->createUserOrReturnExisting(
             $request->email,
             $request->password,
-            $request->first_name,
-            $request->last_name,
+            $request->name,
             $request->mobile_number,
             $request->country,
             $request->region,
@@ -132,14 +130,13 @@ class UserController extends Controller
     }
 
 
-    protected function createUserOrReturnExisting(string $email, string $password, string $first_name, string $last_name, string $mobile_number, string $country, string $region, string $preference1 = null, string $preference2 = null, string $preference3 = null, string $preference4 = null)
+    protected function createUserOrReturnExisting(string $email, string $password, string $name, string $mobile_number, string $country, string $region, string $preference1 = null, string $preference2 = null, string $preference3 = null, string $preference4 = null)
     {
         try {
             $user = User::create([
                 'email' => $email,
                 'password' => $password,
-                'first_name' => $first_name,
-                'last_name' => $last_name,
+                'name' => $name,
                 'mobile_number' => $mobile_number,
                 'country' => $country,
                 'region' => $region,
