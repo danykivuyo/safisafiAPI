@@ -178,6 +178,7 @@ class UserController extends Controller
                 'success' => false,
                 'message' => $e
             ];
+            return $res;
         }
     }
 
