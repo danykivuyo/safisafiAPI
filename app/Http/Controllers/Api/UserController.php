@@ -87,6 +87,8 @@ class UserController extends Controller
             ], 401);
         }
 
+        // return response()->json($request->all());
+
         $res = $this->createUserOrReturnExisting(
             $request->email,
             $request->password,
@@ -137,9 +139,10 @@ class UserController extends Controller
     }
 
 
-    protected function createUserOrReturnExisting(string $email, string $password, string $name, string $mobile_number, string $country, string $region, string $preference1 = null, string $preference2 = null, string $preference3 = null, string $preference4 = null)
+    protected function createUserOrReturnExisting(string $email, string $password, string $name, string $mobile_number = null, string $country, string $region, string $preference1 = null, string $preference2 = null, string $preference3 = null, string $preference4 = null)
     {
         try {
+
             $user = User::create([
                 'email' => $email,
                 'password' => $password,
