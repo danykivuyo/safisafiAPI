@@ -71,14 +71,21 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'name' => 'required',
-            'mobile_number' => 'required',
-            'country' => 'required',
-            'region' => 'required'
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+                'name' => 'required',
+                'mobile_number' => 'required',
+                'country' => 'required',
+                'region' => 'required'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Missing required parameter/s"
+            ], 401);
+        }
 
         $res = $this->createUserOrReturnExisting(
             $request->email,
