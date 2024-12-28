@@ -155,13 +155,14 @@ class UserController extends Controller
                 'preference3' => $preference3,
                 'preference4' => $preference4,
             ]);
+            $usr = User::where('id', $user->id)->first();
 
             $res = [
                 'success' => true,
                 'message' => "User created successfully",
                 'data' => [
                     'status' => 1,
-                    'user' => $user
+                    'user' => $usr
                 ]
             ];
             return $res;
