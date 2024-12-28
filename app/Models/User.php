@@ -24,7 +24,8 @@ class User extends Authenticatable
         'mobile_number',
         'preference1',
         'preference2',
-        'preference3'
+        'preference3',
+        'preference4'
     ];
 
     /**
