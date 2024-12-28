@@ -100,27 +100,27 @@ class UserController extends Controller
             $request->preference4
         );
 
-        //user registered
-        if ($res['data']['status'] == 2) {
-            $response = [
-                'status' => true,
-                'message' => "User registered",
-                'data' => [
-                    'user' => $res['data']['user']
-                ]
-            ];
-
-            return response()->json($response, 200);
-        }
-
         //failed to register
-        else if ($res['success'] == false) {
+        if ($res['success'] == false) {
             $response = [
                 'status' => false,
                 'message' => $res['message'],
             ];
 
             return response()->json($response, 401);
+        }
+
+        //user registered
+        else if ($res['data']['status'] == 2) {
+            $response = [
+                'status' => true,
+                'message' => "User already registered",
+                'data' => [
+                    'user' => $res['data']['user']
+                ]
+            ];
+
+            return response()->json($response, 200);
         }
 
         //created
