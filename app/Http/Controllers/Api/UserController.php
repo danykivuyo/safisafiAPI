@@ -83,7 +83,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => "Missing required parameter/s"
+                'message' => "Missing required parameters"
             ], 401);
         }
 
