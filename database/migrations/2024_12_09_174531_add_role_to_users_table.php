@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::table('users', function (Blueprint $table) {
             //
             $table->string('mobile_number')->after('password');
-            $table->string('role')->after('mobile_number');
-            $table->string('preference1')->after('role');
-            $table->string('preference2')->after('preference1');
-            $table->string('preference3')->after('preference2');
-            $table->string('preference4')->after('preference3');
-            $table->string('subscription')->after('preference4');
-            $table->string('country')->after('subscription');
-            $table->string('region')->after('country');
+            $table->string('role')->default('client')->after('mobile_number');
+            $table->string('preference1')->nullable()->after('role');
+            $table->string('preference2')->nullable()->after('preference1');
+            $table->string('preference3')->nullable()->after('preference2');
+            $table->string('preference4')->nullable()->after('preference3');
+            $table->string('subscription')->default("0")->after('preference4');
+            $table->string('country')->nullable()->after('subscription');
+            $table->string('region')->nullable()->after('country');
         });
     }
 

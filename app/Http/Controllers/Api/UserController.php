@@ -157,7 +157,7 @@ class UserController extends Controller
             ]);
 
             $res = [
-                'status' => true,
+                'success' => true,
                 'message' => "User created successfully",
                 'data' => [
                     'user' => $user

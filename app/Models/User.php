@@ -25,7 +25,11 @@ class User extends Authenticatable
         'preference1',
         'preference2',
         'preference3',
-        'preference4'
+        'preference4',
+        'subscription',
+        'role',
+        'country',
+        'region'
     ];
 
     /**
