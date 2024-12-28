@@ -105,7 +105,7 @@ class UserController extends Controller
         //failed to register
         if ($res['success'] == false) {
             $response = [
-                'status' => false,
+                'success' => false,
                 'message' => $res['message'],
             ];
 
@@ -115,7 +115,7 @@ class UserController extends Controller
         //user registered
         else if ($res['data']['status'] == 2) {
             $response = [
-                'status' => true,
+                'success' => false,
                 'message' => "User already registered",
                 'data' => [
                     'user' => $res['data']['user']
@@ -128,7 +128,7 @@ class UserController extends Controller
         //created
         else {
             $response = [
-                'status' => true,
+                'success' => true,
                 'message' => "User created successfully",
                 'data' => $res['data'],
             ];
@@ -168,7 +168,7 @@ class UserController extends Controller
             if ($e->errorInfo[1] == 1062) {
                 $user = User::where('email', $email)->first();
                 $res = [
-                    'success' => false,
+                    'success' => true,
                     'message' => 'User exists',
                     'data' => [
                         'status' => 2,
